@@ -1,4 +1,4 @@
-package com.mypuresound.puresound.ui.theme
+package com.mypuresound.puresound.presentation.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
