@@ -69,7 +69,7 @@ fun HomeScreen(
     ) {
         item {
             Box(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
                 contentAlignment = Alignment.Center
             ) {
                 LazyHorizontalGrid(
