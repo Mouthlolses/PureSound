@@ -1,23 +1,28 @@
 package com.mypuresound.puresound.presentation.ui
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.mypuresound.puresound.R
 import com.mypuresound.puresound.player.ui.MusicPlayerScreen
 import com.mypuresound.puresound.presentation.ui.components.PureSoundTabRow
 import com.mypuresound.puresound.presentation.ui.screens.home.HomeScreen
 import com.mypuresound.puresound.presentation.ui.screens.music.MusicScreen
-import com.mypuresound.puresound.presentation.ui.screens.settings.SettingsScreen
+import com.mypuresound.puresound.presentation.ui.screens.playlist.PlayListScreen
 import kotlinx.coroutines.launch
 
 
@@ -27,7 +32,7 @@ import kotlinx.coroutines.launch
 fun PureSoundApp() {
 
     val scope = rememberCoroutineScope()
-    val tabs = listOf("Início", "Músicas", "Config")
+    val tabs = listOf("Início", "Músicas", "Playlist")
     val pagerState = rememberPagerState(
         initialPage = 0,
         pageCount = { tabs.size }
@@ -37,8 +42,21 @@ fun PureSoundApp() {
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("PureSound") }
+                    title = { Text("PureSound") },
+                    actions = {
+                        Icon(
+                            painter = painterResource(R.drawable.ic_action_filled_settings),
+                            contentDescription = "settings",
+                            modifier = Modifier
+                                .clickable(
+                                    onClick = {
+
+                                    }
+                                )
+                        )
+                    }
                 )
+                HorizontalDivider()
                 PureSoundTabRow(
                     tabs = tabs,
                     selectedIndex = pagerState.currentPage
@@ -47,6 +65,7 @@ fun PureSoundApp() {
                         pagerState.animateScrollToPage(index)
                     }
                 }
+                HorizontalDivider()
             }
         },
         bottomBar = {
@@ -63,7 +82,7 @@ fun PureSoundApp() {
             when (page) {
                 0 -> HomeScreen()
                 1 -> MusicScreen()
-                2 -> SettingsScreen()
+                2 -> PlayListScreen()
             }
         }
     }

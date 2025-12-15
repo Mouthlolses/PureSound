@@ -23,7 +23,6 @@ class MusicPlayerManager(
     fun resume() = player.play()
 
     fun stop() = player.stop()
-
     fun release() = player.release()
 
     fun isPlaying(): Boolean = player.isPlaying

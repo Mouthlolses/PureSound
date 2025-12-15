@@ -28,6 +28,7 @@ class MusicPlayerViewModel @Inject constructor(
         _isPlaying.value = false
     }
 
+
     override fun onCleared() {
         super.onCleared()
         playerManager.release()

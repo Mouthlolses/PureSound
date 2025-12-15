@@ -1,10 +1,8 @@
 package com.mypuresound.puresound.player.ui
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
@@ -34,7 +32,7 @@ fun MusicPlayerScreen(
     ) {
 
         Text(
-            text = "Minha Música 🎶",
+            text = "Minha Música",
             style = MaterialTheme.typography.titleLarge
         )
 
@@ -43,7 +41,9 @@ fun MusicPlayerScreen(
         PlayerControls(
             isPlaying = isPlaying,
             onPlay = { viewModel.play(musicUrl) },
-            onPause = { viewModel.pause() }
+            onPause = { viewModel.pause() },
+            onPrevious = { },
+            onNext = { }
         )
     }
 }
