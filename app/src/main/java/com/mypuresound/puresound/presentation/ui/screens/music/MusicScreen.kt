@@ -36,7 +36,8 @@ fun MusicScreen(
         items(songs) { song ->
             SongItem(
                 onClick = {
-                    musicPlayerViewModel.play(song.uri.toString())
+                    val uris = songs.map { it.uri }
+                    musicPlayerViewModel.playSong(song.uri,uris)
                 },
                 song = song
             )

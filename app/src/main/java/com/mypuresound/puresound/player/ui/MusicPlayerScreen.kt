@@ -1,5 +1,6 @@
 package com.mypuresound.puresound.player.ui
 
+import android.net.Uri
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,8 +23,7 @@ fun MusicPlayerScreen(
 ) {
     val isPlaying by viewModel.isPlaying.collectAsState()
 
-    val musicUrl =
-        "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+    val listUri = listOf<Uri>(Uri.EMPTY, Uri.EMPTY)
 
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -40,10 +40,10 @@ fun MusicPlayerScreen(
 
         PlayerControls(
             isPlaying = isPlaying,
-            onPlay = { viewModel.play(musicUrl) },
+            onPlay = { viewModel.playSong(Uri.EMPTY, listUri) },
             onPause = { viewModel.pause() },
-            onPrevious = { },
-            onNext = { }
+            onPrevious = { viewModel.previousMediaItem() },
+            onNext = { viewModel.nextMediaItem() }
         )
     }
 }
