@@ -27,7 +27,7 @@ fun MusicScreen(
 ) {
 
     val songs by musicScreenViewModel.songs.collectAsState()
-
+    val uris = songs.map { it.uri }
 
     LazyColumn(
         modifier = Modifier
@@ -36,8 +36,7 @@ fun MusicScreen(
         items(songs) { song ->
             SongItem(
                 onClick = {
-                    val uris = songs.map { it.uri }
-                    musicPlayerViewModel.playSong(song.uri,uris)
+                    musicPlayerViewModel.playSong(song.uri, uris)
                 },
                 song = song
             )
