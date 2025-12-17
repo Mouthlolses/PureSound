@@ -4,7 +4,6 @@ import android.content.ContentUris
 import android.content.Context
 import android.provider.MediaStore
 
-
 fun getAllSongs(context: Context): List<Song> {
 
     val songs = mutableListOf<Song>()
