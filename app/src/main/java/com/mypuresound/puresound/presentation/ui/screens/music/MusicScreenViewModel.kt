@@ -17,8 +17,8 @@ class MusicScreenViewModel @Inject constructor(
     application: Application
 ) : AndroidViewModel(application) {
 
-    private val _song = MutableStateFlow<List<Song>>(emptyList())
-    val songs: StateFlow<List<Song>> = _song.asStateFlow()
+    private val _songs = MutableStateFlow<List<Song>>(emptyList())
+    val songs: StateFlow<List<Song>> = _songs.asStateFlow()
 
     init {
         loadSongs()
@@ -27,7 +27,7 @@ class MusicScreenViewModel @Inject constructor(
     fun loadSongs() {
         viewModelScope.launch {
             val list = getAllSongs(getApplication())
-            _song.value = list
+            _songs.value = list
         }
     }
 }

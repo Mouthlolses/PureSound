@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.mypuresound.puresound.player.MusicPlayerViewModel
+import com.mypuresound.puresound.presentation.ui.screens.music.MusicScreenViewModel
 
 @Composable
 fun MiniMusicPlayerScreen(
@@ -25,6 +26,7 @@ fun MiniMusicPlayerScreen(
 ) {
     val viewModel: MusicPlayerViewModel = hiltViewModel()
     val isPlaying by viewModel.isPlaying.collectAsState()
+
 
     val listUri = listOf<Uri>(Uri.EMPTY, Uri.EMPTY)
 
