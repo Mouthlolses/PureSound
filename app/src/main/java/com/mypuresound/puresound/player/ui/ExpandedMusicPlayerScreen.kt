@@ -27,6 +27,7 @@ import com.mypuresound.puresound.player.MusicPlayerViewModel
 fun ExpandedMusicPlayerScreen(onClose: () -> Unit) {
     val viewModel: MusicPlayerViewModel = hiltViewModel()
     val isPlaying by viewModel.isPlaying.collectAsState()
+    val state by viewModel.uiState.collectAsState()
     val listUri = listOf<Uri>(Uri.EMPTY, Uri.EMPTY)
 
     Column(
@@ -38,11 +39,14 @@ fun ExpandedMusicPlayerScreen(onClose: () -> Unit) {
         verticalArrangement = Arrangement.Center
     ) {
         IconButton(onClick = onClose) {
-            Icon(painter = painterResource(R.drawable.ic_action_keyboard_arrow_down), contentDescription = "Fechar")
+            Icon(
+                painter = painterResource(R.drawable.ic_action_keyboard_arrow_down),
+                contentDescription = "Fechar"
+            )
         }
 
         Text(
-            text = "Minha Música - Título Completo",
+            text = state.currentSong?.title ?: "",
             style = MaterialTheme.typography.headlineMedium
         )
 
@@ -50,7 +54,9 @@ fun ExpandedMusicPlayerScreen(onClose: () -> Unit) {
 
         PlayerControls(
             isPlaying = isPlaying,
-            onPlay = { viewModel.playSong(Uri.EMPTY, listUri) },
+            onPlay = {
+                viewModel.resume()
+            },
             onPause = { viewModel.pause() },
             onPrevious = { viewModel.previousMediaItem() },
             onNext = { viewModel.nextMediaItem() }

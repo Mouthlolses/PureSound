@@ -25,7 +25,7 @@ fun MiniMusicPlayerScreen(
 ) {
     val viewModel: MusicPlayerViewModel = hiltViewModel()
     val isPlaying by viewModel.isPlaying.collectAsState()
-
+    val state by viewModel.uiState.collectAsState()
 
     val listUri = listOf<Uri>(Uri.EMPTY, Uri.EMPTY)
 
@@ -39,7 +39,7 @@ fun MiniMusicPlayerScreen(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = "Minha Música",
+            text = state.currentSong?.title ?: "",
             style = MaterialTheme.typography.titleLarge
         )
 
@@ -47,7 +47,9 @@ fun MiniMusicPlayerScreen(
 
         PlayerControls(
             isPlaying = isPlaying,
-            onPlay = { viewModel.playSong(Uri.EMPTY, listUri) },
+            onPlay = {
+                viewModel.resume()
+            },
             onPause = { viewModel.pause() },
             onPrevious = { viewModel.previousMediaItem() },
             onNext = { viewModel.nextMediaItem() }

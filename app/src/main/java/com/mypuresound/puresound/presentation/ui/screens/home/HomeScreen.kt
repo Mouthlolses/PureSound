@@ -87,7 +87,7 @@ fun HomeScreen() {
                     .height(150.dp)
                     .clickable(
                         onClick = {
-                            musicPlayerViewModel.playSong(data.uri,uris)
+                            musicPlayerViewModel.playSong(data,uris)
                         }
                     )
             ) {

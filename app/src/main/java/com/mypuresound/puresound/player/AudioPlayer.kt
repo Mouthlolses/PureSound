@@ -34,5 +34,4 @@ class MusicPlayerManager @Inject constructor(
     fun seekToPreviousMediaItem() = player.seekToPreviousMediaItem()
 
     fun isPlaying(): Boolean = player.isPlaying
-
 }

@@ -1,6 +1,7 @@
 package com.mypuresound.puresound.presentation.ui.screens.music
 
 import android.net.Uri
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,12 +11,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -38,7 +41,7 @@ fun MusicScreen() {
         items(songs) { song ->
             SongItem(
                 onClick = {
-                    musicPlayerViewModel.playSong(song.uri, uris)
+                    musicPlayerViewModel.playSong(song, uris)
                 },
                 song = song
             )
@@ -54,22 +57,32 @@ fun SongItem(
 ) {
     Column(
         modifier = Modifier
+            .padding(12.dp)
+            .background(
+                color = Color.LightGray,
+                shape = RoundedCornerShape(12.dp)
+            )
             .fillMaxWidth()
             .clickable {
                 onClick()
             }
-            .padding(16.dp)
+
     ) {
-        Text(text = song.title, style = MaterialTheme.typography.bodyLarge)
-        Text(text = song.artist, style = MaterialTheme.typography.bodyMedium)
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+        Column(
+            modifier = Modifier
+                .padding(12.dp)
         ) {
-            Text(
-                text = song.album,
-                style = MaterialTheme.typography.bodySmall
-            )
+            Text(text = song.title, style = MaterialTheme.typography.bodyLarge)
+            Text(text = song.artist, style = MaterialTheme.typography.bodyMedium)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(
+                    text = song.album,
+                    style = MaterialTheme.typography.bodySmall
+                )
+            }
         }
     }
 }
