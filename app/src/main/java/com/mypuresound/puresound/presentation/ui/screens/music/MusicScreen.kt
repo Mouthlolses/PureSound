@@ -2,7 +2,9 @@ package com.mypuresound.puresound.presentation.ui.screens.music
 
 import android.net.Uri
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,10 +23,10 @@ import com.mypuresound.puresound.player.MusicPlayerViewModel
 import com.mypuresound.puresound.player.mediastore.Song
 
 @Composable
-fun MusicScreen(
-    musicScreenViewModel: MusicScreenViewModel = hiltViewModel(),
-    musicPlayerViewModel: MusicPlayerViewModel = hiltViewModel()
-) {
+fun MusicScreen() {
+    val musicScreenViewModel: MusicScreenViewModel = hiltViewModel()
+    val musicPlayerViewModel: MusicPlayerViewModel = hiltViewModel()
+
 
     val songs by musicScreenViewModel.songs.collectAsState()
     val uris = songs.map { it.uri }
@@ -48,7 +50,7 @@ fun MusicScreen(
 @Composable
 fun SongItem(
     onClick: () -> Unit = { },
-    song: Song = Song(id = 0, title = "Musica 1", "Overcooking", 3, Uri.EMPTY)
+    song: Song = Song(id = 0, title = "Musica 1", "Overcooking", 3, 1, "MyAlbum", Uri.EMPTY)
 ) {
     Column(
         modifier = Modifier
@@ -60,6 +62,15 @@ fun SongItem(
     ) {
         Text(text = song.title, style = MaterialTheme.typography.bodyLarge)
         Text(text = song.artist, style = MaterialTheme.typography.bodyMedium)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = song.album,
+                style = MaterialTheme.typography.bodySmall
+            )
+        }
     }
 }
 

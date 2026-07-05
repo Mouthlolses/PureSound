@@ -7,5 +7,7 @@ data class Song(
     val title: String = "",
     val artist: String = "",
     val duration: Long = 0L,
+    val albumId: Long = 0L,
+    val album: String = "",
     val uri: Uri = Uri.EMPTY
 )

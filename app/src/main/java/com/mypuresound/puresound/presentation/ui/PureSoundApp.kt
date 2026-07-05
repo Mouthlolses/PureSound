@@ -1,6 +1,5 @@
 package com.mypuresound.puresound.presentation.ui
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,6 +10,7 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -58,16 +58,17 @@ fun PureSoundApp() {
                     TopAppBar(
                         title = { Text("PureSound") },
                         actions = {
-                            Icon(
-                                painter = painterResource(R.drawable.ic_action_filled_settings),
-                                contentDescription = "settings",
-                                modifier = Modifier
-                                    .clickable(
-                                        onClick = {
+                            IconButton(
+                                onClick = {
 
-                                        }
-                                    )
-                            )
+                                }
+                            ) {
+                                Icon(
+                                    painter = painterResource(R.drawable.ic_action_filled_settings),
+                                    contentDescription = "settings"
+                                )
+                            }
+
                         }
                     )
                     HorizontalDivider()
